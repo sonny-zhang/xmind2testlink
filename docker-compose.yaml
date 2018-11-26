@@ -1,0 +1,49 @@
+version: "3.6"
+
+services:
+  xmind-app:
+    image: 1fengchen1/c7-py365  
+    # 放到网路中去
+    networks:
+      - xmind
+    # 把容器的3000端口映射到本地的3000端口
+    ports:
+      - "3000:3000"
+    volumes:
+        # 代码/配置文件/log
+      - type: bind
+        source: $PWD/web
+        target: /web
+        # 脚本文件
+      - type: bind
+        source: $PWD/web/web.sh
+        target: /web.sh
+    command: [ "./web.sh"]
+
+#  nginx: 
+#    # 基础镜像nginx
+#    image: nginx:stable-alpine
+#    # 停止时，重启
+#    #restart: unless-stopped
+#    networks:
+#      - xmind
+#    # 描述一个依赖:作用，告诉compose启动顺序为是msyqkl-app-nginx
+#    depends_on:
+#      - xmind-app
+#    # 把容器的80端口映射到本地的8000端口
+#    ports:
+#      - "8000:80"
+#    volumes:
+#        # 包含log和nginx,conf
+#      - type: tmpfs
+#        target: /log
+#        # 配置文件
+#      - type: bind
+#        source: $PWD/nginx/nginx.conf
+#        target: /etc/nginx/nginx.conf
+            
+networks:
+  xmind:
+
+#volumes:
+  
