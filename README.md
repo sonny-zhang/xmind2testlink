@@ -5,4 +5,4 @@
 ## docker 运行命令
 docker pull 1fengchen1/xmind2testlink  
 docker run -d -p 0.0.0.0:3000:3000 1fengchen1/xmind2testlink  
-在浏览器输入：localhost：3000
+在浏览器输入：localhost:3000
